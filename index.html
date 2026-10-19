@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Ya no lo veo igual</title>
+<meta name="description" content="Plan v3 para la cuenta de Chuss: 10 videos del 5 al 23 de noviembre, de la CDMX a Chicago y de regreso.">
+<meta name="theme-color" content="#0a0d10">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap">
+<style>
+/* v3 · una cartelera de 10 videos. Cálido = lo que tú ves. Blanco = el trazo, lo que ve Chuss. */
+:root{
+  --bg:#0a0d10; --bg2:#0e1318; --surface:#131a20; --surface2:#18212a; --rule:#232d37; --rule2:#2e3a46;
+  --fg:#efebe4; --muted:#96a0a9; --dim:#6b7680;
+  --warm:#eaa65a; --warm-soft:rgba(234,166,90,.13); --on-warm:#17110a;
+  --line:#f6f3ec; --blue:#8fc6ea; --blue-soft:rgba(143,198,234,.12); --red:#e07a6a;
+  --p1:#eaa65a; --p2:#8fc6ea; --p3:#d9c7f0;
+  --f-display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --f-body:"Instrument Sans","Helvetica Neue",Arial,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --head:58px; --r:18px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--head) + 8px);-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:1rem;line-height:1.6;overflow-x:hidden}
+svg{max-width:100%;display:block}
+a{color:var(--blue)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:6px}
+::selection{background:var(--warm);color:var(--on-warm)}
+.gut{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.inner{max-width:1160px;margin:0 auto;width:100%}
+h1,h2,h3{font-family:var(--f-display);font-weight:800;margin:0;letter-spacing:-.015em}
+h2{font-size:clamp(2rem,5.6vw,3.7rem);line-height:1.02;font-stretch:112%;max-width:17ch}
+h3{font-size:clamp(1.1rem,2.2vw,1.35rem);line-height:1.2;font-stretch:105%}
+p{margin:0}
+.kicker{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 16px;display:flex;align-items:center;gap:10px}
+.kicker::before{content:"";width:22px;height:1px;background:currentColor}
+.lead{font-size:clamp(1.04rem,1.9vw,1.22rem);color:var(--muted);max-width:62ch;margin-top:18px}
+.lead strong{color:var(--fg);font-weight:600}
+.muted{color:var(--muted)}
+section{padding-block:clamp(76px,11vw,132px);position:relative}
+section+section{border-top:1px solid var(--rule)}
+mark{background:none;color:inherit}
+mark.him,mark.chk{font-family:var(--f-mono);font-size:.7em;letter-spacing:.02em;padding:1px 7px;border-radius:999px;white-space:normal;vertical-align:1px}
+mark.him{color:var(--warm);background:var(--warm-soft);border:1px solid rgba(234,166,90,.35)}
+mark.chk{color:var(--blue);background:var(--blue-soft);border:1px solid rgba(143,198,234,.35)}
+.anim{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.08em;color:var(--bg);background:var(--p3);padding:1px 6px;border-radius:4px;margin-right:4px;vertical-align:1px}
+
+/* barra */
+.progress{position:fixed;top:0;left:0;height:2px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:var(--warm);z-index:70}
+.top{position:fixed;inset:0 0 auto 0;z-index:60;padding-top:env(safe-area-inset-top,0px);background:rgba(10,13,16,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .3s}
+.top.scrolled{border-bottom-color:var(--rule)}
+.top .inner{height:var(--head);display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{font-family:var(--f-display);font-weight:800;font-stretch:125%;font-size:1rem;color:var(--fg);text-decoration:none;white-space:nowrap}
+.logo em{font-style:normal;color:var(--warm)}
+.nav{display:flex;gap:4px}
+.nav a{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:999px}
+.nav a:hover,.nav a.on{color:var(--fg);background:var(--surface)}
+@media (max-width:820px){.nav{display:none}}
+
+/* hero */
+.hero{min-height:100svh;display:flex;align-items:center;padding-block:calc(var(--head) + 40px) 56px;overflow:hidden}
+.hero .inner{position:relative;z-index:1}
+.hero h1{font-size:clamp(3.1rem,12.5vw,9.6rem);line-height:.9;font-stretch:120%;max-width:9ch}
+.hero h1 span{color:var(--warm)}
+.ticker{margin-top:34px;border-left:2px solid var(--warm);padding:6px 0 6px 18px;max-width:640px;min-height:118px}
+.ticker .lab{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.ticker .h{font-family:var(--f-display);font-weight:700;font-stretch:104%;font-size:clamp(1.2rem,2.6vw,1.65rem);line-height:1.25;margin-top:6px;transition:opacity .45s,transform .45s}
+.ticker .h.out{opacity:0;transform:translateY(8px)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;margin-top:40px;max-width:900px}
+.stats div{background:var(--bg2);padding:16px 18px}
+.stats b{display:block;font-family:var(--f-display);font-weight:800;font-stretch:115%;font-size:clamp(1.5rem,3.4vw,2.2rem);line-height:1;color:var(--fg)}
+.stats span{display:block;font-size:.84rem;color:var(--muted);margin-top:6px;line-height:1.35}
+@media (max-width:640px){.stats{grid-template-columns:1fr 1fr}}
+.grid-bg{position:absolute;inset:0;background-image:linear-gradient(var(--rule) 1px,transparent 1px),linear-gradient(90deg,var(--rule) 1px,transparent 1px);background-size:64px 64px;opacity:.35;mask-image:radial-gradient(70% 60% at 75% 40%,#000 0%,transparent 75%);-webkit-mask-image:radial-gradient(70% 60% at 75% 40%,#000 0%,transparent 75%);pointer-events:none}
+.hero-x{position:absolute;right:max(16px,5vw);top:50%;transform:translateY(-50%);width:min(30vw,340px);opacity:.75;pointer-events:none}
+.hero-x .bx{fill:#10171d;stroke:var(--rule2);stroke-width:1.5}
+.hero-x .ln{fill:none;stroke:var(--line);stroke-width:2;stroke-dasharray:var(--len);stroke-dashoffset:var(--len);animation:draw 1.6s ease forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+@media (max-width:900px){.hero-x{display:none}}
+@media (min-width:901px){.hero .stats,.hero .ticker{max-width:calc(100% - min(30vw,340px) - 48px)}}
+
+/* tarjetas genéricas */
+.cards{display:grid;gap:14px;margin-top:34px}
+.c3{grid-template-columns:repeat(3,1fr)} .c4{grid-template-columns:repeat(4,1fr)} .c2{grid-template-columns:repeat(2,1fr)}
+@media (max-width:980px){.c4{grid-template-columns:1fr 1fr}}
+@media (max-width:880px){.c3{grid-template-columns:1fr}}
+@media (max-width:720px){.c2,.c4{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:var(--r);padding:clamp(18px,2.4vw,26px);display:flex;flex-direction:column;gap:10px;min-width:0}
+.tag{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.card ul{margin:0;padding-left:1.1em;color:var(--muted)} .card li{margin:4px 0} .card li strong{color:var(--fg);font-weight:600}
+.big{font-family:var(--f-display);font-weight:800;font-stretch:115%;font-size:clamp(1.6rem,3.6vw,2.4rem);line-height:1}
+.c-red{border-color:rgba(224,122,106,.35)} .c-red .tag{color:var(--red)}
+.c-blue{border-color:rgba(143,198,234,.35)} .c-blue .tag{color:var(--blue)}
+.c-warm{border-color:rgba(234,166,90,.4)} .c-warm .tag{color:var(--warm)}
+
+/* pilares */
+.pil{position:relative}
+.pil .dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:8px}
+.pil .job{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.pil .prom{color:var(--fg)}
+.pil .n{font-family:var(--f-mono);font-size:.78rem;color:var(--muted)}
+
+/* constantes */
+.const .num{font-family:var(--f-mono);font-size:.78rem;color:var(--warm)}
+.dict{background:var(--line);color:#14181c;border-radius:14px;padding:16px 18px;font-family:var(--f-body);position:relative}
+.dict .t{font-family:var(--f-mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:#59626b}
+.dict .w{font-family:var(--f-display);font-weight:800;font-stretch:110%;font-size:1.45rem;line-height:1.1;margin-top:4px}
+.dict .w i{font-family:var(--f-body);font-style:italic;font-weight:400;font-size:.85rem;color:#59626b;margin-left:6px}
+.dict .d{font-size:.9rem;margin-top:4px;color:#2b3238}
+
+/* estructuras */
+.est{margin-top:34px;display:flex;flex-direction:column;gap:26px}
+.est .row{background:var(--surface);border:1px solid var(--rule);border-radius:var(--r);padding:clamp(18px,2.4vw,26px)}
+.est .hd{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 18px;align-items:baseline;margin-bottom:14px}
+.est .hd span{font-family:var(--f-mono);font-size:.76rem;color:var(--muted)}
+.bar{display:flex;gap:3px;height:54px;border-radius:10px;overflow:hidden}
+.bar div{background:var(--surface2);display:flex;align-items:flex-end;padding:6px 7px;font-size:.7rem;line-height:1.15;color:var(--muted);min-width:0;overflow:hidden;position:relative}
+.bar{height:72px;align-items:stretch}
+.bar div{align-items:flex-start;padding-top:6px}
+.bar div::before{content:"";position:absolute;left:0;right:0;bottom:0;height:var(--h);background:var(--warm);opacity:.85}
+.bar div span{position:relative;z-index:1;mix-blend-mode:normal}
+.bar div.k::before{background:var(--line)}
+.legend-steps{margin:14px 0 0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:6px 18px;font-size:.9rem;color:var(--muted)}
+.legend-steps b{font-family:var(--f-mono);font-weight:500;color:var(--fg);font-size:.78rem;margin-right:6px}
+@media (max-width:640px){.bar div span{display:none}}
+
+/* calendario */
+.cal{margin-top:34px;overflow-x:auto;padding-bottom:10px;-webkit-overflow-scrolling:touch}
+.cal-track{display:grid;grid-template-columns:repeat(19,minmax(46px,1fr));min-width:880px;position:relative;border-top:1px solid var(--rule2)}
+.cal-day{border-left:1px solid var(--rule);padding:8px 4px 0;min-height:138px;position:relative}
+.cal-day .d{font-family:var(--f-mono);font-size:.68rem;color:var(--dim)}
+.cal-day.chi{background:repeating-linear-gradient(135deg,rgba(143,198,234,.07) 0 8px,transparent 8px 16px)}
+.cal-chi{position:absolute;top:-28px;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue)}
+.cal-v{display:block;margin-top:10px;text-decoration:none;color:var(--fg);background:var(--surface);border:1px solid var(--rule2);border-radius:10px;padding:6px 6px 7px;font-size:.72rem;line-height:1.2;border-top:3px solid var(--c)}
+.cal-v b{font-family:var(--f-mono);font-size:.7rem;display:block;color:var(--c)}
+.cal-v:hover{border-color:var(--c)}
+
+/* los 10 */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-top:30px}
+.fbtn{border:1px solid var(--rule2);background:transparent;border-radius:999px;padding:8px 15px;min-height:42px;cursor:pointer;font-size:.92rem;color:var(--muted)}
+.fbtn[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.vids{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:20px}
+@media (max-width:900px){.vids{grid-template-columns:1fr}}
+.vid{background:var(--surface);border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;scroll-margin-top:calc(var(--head) + 16px)}
+.vid.open{grid-column:1/-1}
+.vid[hidden]{display:none}
+.vid .top-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:18px 20px 0}
+.vid .no{font-family:var(--f-display);font-weight:800;font-stretch:125%;font-size:1.5rem;line-height:1;color:var(--c)}
+.vid .date{font-family:var(--f-mono);font-size:.76rem;color:var(--muted)}
+.chip{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.05em;border:1px solid var(--rule2);border-radius:999px;padding:3px 9px;color:var(--muted)}
+.chip.pc{color:var(--c);border-color:color-mix(in srgb,var(--c) 45%,transparent)}
+.vid .hook{font-family:var(--f-display);font-weight:700;font-stretch:103%;font-size:clamp(1.25rem,2.4vw,1.6rem);line-height:1.22;padding:14px 20px 0}
+.vid .spark{padding:14px 20px 0}
+.vid .spark svg{width:100%;height:58px}
+.vid .meta{display:flex;flex-wrap:wrap;gap:8px 16px;padding:12px 20px 0;font-size:.86rem;color:var(--muted)}
+.vid .meta b{color:var(--fg);font-weight:600}
+.vid .open-btn{margin:16px 20px 20px;align-self:flex-start;border:1px solid var(--rule2);background:var(--bg2);border-radius:999px;padding:9px 16px;min-height:42px;cursor:pointer;font-size:.9rem}
+.vid .open-btn:hover{border-color:var(--c)}
+.script{border-top:1px solid var(--rule);padding:6px 20px 22px;display:none}
+.vid.open .script{display:block}
+.beat{display:grid;grid-template-columns:64px 44px 1fr 1.2fr;gap:14px;padding:14px 0;border-bottom:1px solid var(--rule)}
+.beat:last-of-type{border-bottom:0}
+.beat .s{font-family:var(--f-mono);font-size:.8rem;color:var(--muted)}
+.beat .tn{display:flex;gap:2px;align-items:flex-end;height:20px;padding-top:2px}
+.beat .tn i{width:5px;background:var(--rule2);border-radius:1px}
+.beat .tn i.on{background:var(--c)}
+.beat .ve{font-size:.9rem;color:var(--muted)}
+.beat .di{font-size:.98rem}
+.beat .lbl{display:none;font-family:var(--f-mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:2px}
+@media (max-width:760px){.beat{grid-template-columns:auto 1fr;gap:4px 12px}.beat .ve,.beat .di{grid-column:1/-1}.beat .lbl{display:block}}
+.notes{margin-top:12px;font-size:.86rem;color:var(--muted);background:var(--bg2);border-radius:12px;padding:12px 14px}
+
+/* ia */
+.ia-row{display:grid;grid-template-columns:auto 1fr;gap:4px 18px;padding:14px 0;border-bottom:1px solid var(--rule)}
+.ia-row:last-child{border-bottom:0}
+.ia-row b{font-family:var(--f-mono);font-weight:500;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--p3);min-width:7.5em}
+@media (max-width:560px){.ia-row{grid-template-columns:1fr}}
+
+/* preguntas */
+.qs{display:flex;flex-direction:column;gap:12px;margin-top:30px}
+.q{background:var(--surface);border:1px solid var(--rule);border-radius:16px;padding:16px clamp(16px,2.4vw,22px)}
+.q fieldset{border:0;margin:0;padding:0;min-width:0}
+.q legend{font-weight:600;padding:0;margin-bottom:8px}
+.q .hint{font-size:.86rem;color:var(--muted);margin:-4px 0 10px}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opts label{position:relative}
+.opts input{position:absolute;opacity:0;pointer-events:none}
+.opts span{display:inline-flex;align-items:center;min-height:42px;padding:8px 14px;border-radius:999px;border:1px solid var(--rule2);background:var(--bg2);cursor:pointer;font-size:.92rem}
+.opts input:checked+span{background:var(--warm);border-color:var(--warm);color:var(--on-warm)}
+.opts input:focus-visible+span{outline:2px solid var(--blue);outline-offset:2px}
+.q textarea{width:100%;min-height:64px;margin-top:10px;background:var(--bg2);border:1px solid var(--rule2);border-radius:10px;color:var(--fg);font:inherit;padding:10px 12px;resize:vertical}
+.msg{margin-top:16px;background:var(--bg2);border:1px solid var(--rule2);border-radius:14px;padding:16px;font-family:var(--f-mono);font-size:.84rem;white-space:pre-wrap;color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:46px;padding:10px 20px;border-radius:999px;border:0;cursor:pointer;background:var(--warm);color:var(--on-warm);font-weight:600;margin-top:12px}
+.ok{font-family:var(--f-mono);font-size:.8rem;color:var(--blue);margin-left:10px}
+footer{border-top:1px solid var(--rule);padding-block:40px 64px;color:var(--muted);font-size:.86rem}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hero-x .ln{animation:none;stroke-dashoffset:0}.ticker .h{transition:none}}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<header class="top gut" id="top">
+  <div class="inner">
+    <a class="logo" href="#inicio">Ya no lo veo <em>igual</em></a>
+    <nav class="nav" aria-label="Secciones">
+      <a href="#porque">Por qué</a><a href="#pilares">Pilares</a><a href="#siempre">Siempre</a><a href="#estructuras">Estructuras</a><a href="#calendario">Calendario</a><a href="#videos">Los 10</a><a href="#ia">IA</a><a href="#chuss">Tú</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero gut" id="inicio" style="border-top:0">
+  <div class="grid-bg" aria-hidden="true"></div>
+  <svg class="hero-x" viewBox="0 0 200 420" aria-hidden="true"><rect class="bx" x="40" y="10" width="120" height="400"/><g id="heroLines"></g></svg>
+  <div class="inner">
+    <p class="kicker">Plan v3 · para Chuss · 10 videos · 5 – 23 nov</p>
+    <h1>Ya no lo veo <span>igual.</span></h1>
+    <div class="ticker" aria-live="polite">
+      <p class="lab" id="tickLab">Video 1 · jue 5 nov</p>
+      <p class="h" id="tickH"></p>
+    </div>
+    <div class="stats">
+      <div><b>10</b><span>videos, de una semana antes de Chicago al regreso</span></div>
+      <div><b>22</b><span>shorts virales estudiados para escribirlos</span></div>
+      <div><b>0–3 s</b><span>un número o un problema en pantalla</span></div>
+      <div><b>4–8 s</b><span>un giro, para que nunca sea plano</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="gut" id="porque">
+  <div class="inner">
+    <p class="kicker">01 · Por qué cambió</p>
+    <h2>Estudiamos lo que sí pega. Lo nuestro era un camino plano.</h2>
+    <p class="lead">Bajamos y transcribimos 22 videos cortos del nicho con vistas reales (obra, edificios, ciudades, correr). <strong>Lo que tienen todos, y a nosotros nos faltaba:</strong></p>
+    <div class="cards c3">
+      <div class="card c-red"><p class="tag">Lo que no jalaba</p><ul><li>Ganchos sin número: "te dan un casco", "5:10 de la mañana".</li><li>Prometíamos y no pagábamos: "hay un orden"… ¿cuál?</li><li>Un pico cada 10–15 s.</li><li>El sello hablado gastaba 3 s.</li><li>Prohibimos la animación.</li></ul></div>
+      <div class="card c-blue"><p class="tag">Lo que gana</p><ul><li><strong>"Parece un error, pero no."</strong> (1.46 M)</li><li><strong>"No se cae por el concreto, se cae por el agua."</strong> (7.7 M)</li><li><strong>Pregunta + número + caso real.</strong> (13.9 M)</li><li>Un objeto en la mano o una animación.</li><li>Casi nadie da la cara al inicio.</li></ul></div>
+      <div class="card c-warm"><p class="tag">Te llevo la contraria</p><p>Lo que gana dura <strong>25 a 60 s</strong>, no 90. Hanah aguanta 90 porque ya tiene público. Por eso: explicativos de ~55 s muy densos y personales de ~40 s. Si en la tanda 1 la gente llega al final, subimos.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="gut" id="pilares">
+  <div class="inner">
+    <p class="kicker">02 · Los 3 pilares</p>
+    <h2>Un pilar es un tema con un trabajo.</h2>
+    <div class="cards c3">
+      <div class="card pil"><p class="job"><span class="dot" style="background:var(--p1)"></span>Atrae</p><h3>Lugares con diseño y experiencia</h3><p class="prom">Por qué un lugar que tú puedes visitar se siente así.</p><p class="n">6 de los 10 · edificios, ciudad, Chicago</p></div>
+      <div class="card pil"><p class="job"><span class="dot" style="background:var(--p2)"></span>Que te crean</p><h3>Obra, el día a día</h3><p class="prom">Lo que pasa en una obra, contado por quien está ahí.</p><p class="n">2 de los 10 · concreto, primer día</p></div>
+      <div class="card pil"><p class="job"><span class="dot" style="background:var(--p3)"></span>Que te quieran</p><h3>Life, Lately.</h3><p class="prom">La vida que cabe alrededor de una jornada de obra.</p><p class="n">2 de los 10 · correr de principiante</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="gut" id="siempre">
+  <div class="inner">
+    <p class="kicker">03 · Lo que va en todos los videos</p>
+    <h2>Cuatro cosas que se repiten, y todas traen información.</h2>
+    <div class="cards c4">
+      <div class="card const"><span class="num">01</span><h3>Un número en los primeros 3 s</h3><p class="muted">9 escalones. 412 metros. 23 % menos oxígeno. Detiene el dedo.</p></div>
+      <div class="card const"><span class="num">02</span><h3>"En obra le decimos ___"</h3><div class="dict"><p class="t">Diccionario de obra</p><p class="w">contraventeo<i>sust.</i></p><p class="d">Las X que amarran una estructura contra el viento.</p></div></div>
+      <div class="card const"><span class="num">03</span><h3>El trazo</h3><p class="muted">Líneas blancas que se dibujan sobre lo terminado. "Esto es lo que yo veo."</p></div>
+      <div class="card const"><span class="num">04</span><h3>Pregunta + firma</h3><p class="muted">Una pregunta para los comentarios y "Ya no lo veo igual".</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="gut" id="estructuras">
+  <div class="inner">
+    <p class="kicker">04 · Dos estructuras, una por tanda</p>
+    <h2>Tres videos con una forma, tres con otra.</h2>
+    <p class="lead">Cada tanda tiene un video de cada pilar. Al final comparamos cuál forma jaló más. <strong>La altura de la barra es la tensión</strong>: así se ve la montaña rusa.</p>
+    <div class="est" id="estBars"></div>
+  </div>
+</section>
+
+<section class="gut" id="calendario">
+  <div class="inner">
+    <p class="kicker">05 · Calendario · 3 por semana</p>
+    <h2>Una semana antes, Chicago y el regreso.</h2>
+    <p class="lead">Los videos se amarran entre sí: <strong>el 1 lo paga el 10</strong>, <strong>el 3 lo paga el 6</strong> y <strong>el 4 es la parte 1 del 7</strong>. Aun así, cada uno funciona solo.</p>
+    <div class="cal" style="padding-top:30px"><div class="cal-track" id="calTrack"></div></div>
+  </div>
+</section>
+
+<section class="gut" id="videos">
+  <div class="inner">
+    <p class="kicker">06 · Los 10 videos</p>
+    <h2>Cada uno promete algo y lo paga.</h2>
+    <p class="lead">Toca "Ver guion" para verlo segundo a segundo. Solo tú puedes llenar lo marcado <mark class="him">que lo diga él</mark>; lo marcado <mark class="chk">confirmar</mark> lo revisa el equipo.</p>
+    <div class="filters" role="group" aria-label="Filtrar por pilar">
+      <button class="fbtn" aria-pressed="true" data-f="all">Todos</button>
+      <button class="fbtn" aria-pressed="false" data-f="L">Lugares</button>
+      <button class="fbtn" aria-pressed="false" data-f="O">Obra</button>
+      <button class="fbtn" aria-pressed="false" data-f="V">Life, Lately</button>
+    </div>
+    <div class="vids" id="vids"></div>
+  </div>
+</section>
+
+<section class="gut" id="ia">
+  <div class="inner">
+    <p class="kicker">07 · Animación con IA</p>
+    <h2>Sí, para lo que no se puede grabar.</h2>
+    <div class="card" style="margin-top:30px">
+      <div class="ia-row"><b>Para qué</b><span>Chicago en 1860, el piso del Ledge que truena, la olla de concreto, un cilindro rompiéndose, el viento alrededor de una torre, la tarjeta del diccionario.</span></div>
+      <div class="ia-row"><b>Cuánto</b><span>2 a 4 momentos de 2 a 5 s por video. Máximo una cuarta parte. Tu voz y tu cara siempre son reales.</span></div>
+      <div class="ia-row"><b>Cómo</b><span>Con la guía paso a paso de producción con IA, al pie de la letra. Si recrea algo real, lleva el letrero "recreación".</span></div>
+      <div class="ia-row"><b>Nunca</b><span>Tu cara ni tu voz hechas con IA sin tu permiso. Ni un lugar real inventado: si se ve un lugar real, se edita la foto real.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="gut" id="chuss">
+  <div class="inner">
+    <p class="kicker">08 · Lo que necesitamos de ti</p>
+    <h2>Un audio y arrancamos el 5 de noviembre.</h2>
+    <p class="lead">Contesta lo que puedas. Abajo se arma un mensaje para mandárselo a Paul por WhatsApp. Lo largo, mejor en audio.</p>
+    <form class="qs" id="qs" onsubmit="return false">
+      <div class="q"><fieldset><legend>1 · Correr: ¿a qué ritmo vas por km y qué tiempo quieres bajar?</legend><p class="hint">Videos 3 y 6. Sin pena: es el diario de alguien que está empezando.</p><textarea name="q1" aria-label="Ritmo y meta"></textarea></fieldset></div>
+      <div class="q"><fieldset><legend>2 · ¿Te dan miedo las alturas?</legend><p class="hint">Videos 4 y 7, la caja de vidrio a 412 m.</p><div class="opts"><label><input type="radio" name="q2" value="Sí, mucho"><span>Sí, mucho</span></label><label><input type="radio" name="q2" value="Un poco"><span>Un poco</span></label><label><input type="radio" name="q2" value="No"><span>No</span></label></div></fieldset></div>
+      <div class="q"><fieldset><legend>3 · Tu primer día en obra: ¿le diste una orden al maestro de obra?</legend><p class="hint">Video 8. Si no pasó, cuéntanos qué sí pasó.</p><div class="opts"><label><input type="radio" name="q3" value="Sí, tal cual"><span>Sí, tal cual</span></label><label><input type="radio" name="q3" value="Algo parecido"><span>Algo parecido</span></label><label><input type="radio" name="q3" value="No, fue otra cosa"><span>No, fue otra cosa</span></label></div><textarea name="q3b" aria-label="Qué pasó tu primer día" placeholder="¿Qué pasó? ¿Cuántos años de obra tenía el maestro?"></textarea></fieldset></div>
+      <div class="q"><fieldset><legend>4 · En tu obra, ¿riegan el concreto después de colar? ¿Cuántos días?</legend><p class="hint">Video 2.</p><div class="opts"><label><input type="radio" name="q4" value="Sí"><span>Sí</span></label><label><input type="radio" name="q4" value="No"><span>No</span></label><label><input type="radio" name="q4" value="Depende"><span>Depende</span></label></div><textarea name="q4b" aria-label="Cuántos días" placeholder="¿Cuántos días?"></textarea></fieldset></div>
+      <div class="q"><fieldset><legend>5 · ¿Cómo le dices tú a levantar un edificio con gatos? ¿Y la frase "lo que no está en la bitácora, no pasó"?</legend><p class="hint">Videos 8 y 10: las palabras del diccionario tienen que ser tuyas.</p><textarea name="q5" aria-label="Tus palabras de obra"></textarea></fieldset></div>
+      <div class="q"><fieldset><legend>6 · ¿Tu empresa tiene reglas para redes?</legend><div class="opts"><label><input type="radio" name="q6" value="No hay"><span>No hay</span></label><label><input type="radio" name="q6" value="Sí, te las paso"><span>Sí, te las paso</span></label><label><input type="radio" name="q6" value="No sé, pregunto"><span>No sé</span></label></div></fieldset></div>
+      <div class="q"><fieldset><legend>7 · ¿Te late intentar 3 videos por semana?</legend><div class="opts"><label><input type="radio" name="q7" value="Sí, 3"><span>Sí, 3</span></label><label><input type="radio" name="q7" value="Mejor 2"><span>Mejor 2</span></label><label><input type="radio" name="q7" value="Mejor 1"><span>Mejor 1</span></label></div></fieldset></div>
+    </form>
+    <div class="msg" id="msg" aria-live="polite">Contesta y aquí aparece tu mensaje.</div>
+    <button class="btn" id="copy">Copiar mensaje</button><span class="ok" id="ok" role="status"></span>
+  </div>
+</section>
+</main>
+<footer class="gut"><div class="inner">Plan v3 · armado por Paul con su equipo de contenido (estrategia, estudio viral, investigación, guion y revisión). Las versiones 1 y 2 siguen igual. Datos con fuente en el borrador del 19 oct 2026. Nada se publica sin que Chuss lo apruebe.</div></footer>
+
+<script>
+var DATA = [{"n": 1, "fecha": "jue 5 nov", "pilar": "LUGARES (CDMX)", "est": 1, "dur": 55, "extra": "", "hook": "\"El Ángel se inauguró con 9 escalones. Según el INAH, le han agregado 14.\"", "rows": [{"s": "0–3", "t": 5, "ve": "La cámara sube la escalinata del Ángel escalón por escalón; contador: 9… 23", "dice": "\"El Ángel de la Independencia se inauguró con 9 escalones. Según el INAH, le han agregado 14.\""}, {"s": "3–8", "t": 4, "ve": "Anim.: el monumento quieto y el suelo que baja a su alrededor", "dice": "\"Y no, no lo hicieron más alto. El Ángel no creció: la ciudad se bajó.\""}, {"s": "8–20", "t": 4, "ve": "Comparación casera (con letrero): un lápiz clavado hasta el fondo de un traste con esponja mojada; con una jeringa le saca agua por abajo y la esponja baja, el lápiz no", "dice": "\"Está parado en pilotes que llegan a suelo firme. Lo de alrededor es arcilla con agua: cuando se saca el agua de abajo, la arcilla se aprieta y baja.\""}, {"s": "20–30", "t": 5, "ve": "Pantalla: \"6–15 cm al año\" · \"hasta ~40 cm\"", "dice": "\"¿Cuánto? En el Centro Histórico, de 6 a 15 centímetros al año. En las peores zonas de la ciudad, hasta unos 40.\""}, {"s": "30–38", "t": 4, "ve": "Tarjeta: EN OBRA LE DECIMOS · ASENTAMIENTO DIFERENCIAL. Trazo: pilotes bajo el Ángel, el suelo que baja", "dice": "\"Y lo peligroso es cuando baja disparejo: un lado más que otro. En obra le decimos asentamiento diferencial. Esto es lo que yo veo.\""}, {"s": "38–48", "t": 5, "ve": "Bellas Artes; pantalla \"1921: −1.80 m\"", "dice": "\"Por eso Bellas Artes, antes de inaugurarse, ya se había hundido 1.80 metros.\""}, {"s": "48–55", "t": 3, "ve": "Chuss de espaldas frente al Ángel", "dice": "\"Y en una semana voy a la ciudad que hizo exactamente lo contrario.\" · Pantalla: \"¿Qué edificio de la CDMX ves chueco? 👇 · Ya no lo veo igual\""}], "notas": "Montaña: 5 · 4 · 4 · 5 · 4 · 5 · 3. Datos: 4 (9 + 14 escalones según el INAH; 6–15 cm/año; ~40 cm; 1.80 m).\nGrabación: ~10 min en el Ángel (espacio público) + 5 min la demo en casa + 5 min de audio."}, {"n": 2, "fecha": "sáb 7 nov", "pilar": "OBRA", "est": 1, "dur": 55, "extra": "", "hook": "\"Esta losa ya está dura… y la siguen regando como planta.\"", "rows": [{"s": "0–3", "t": 5, "ve": "Anim. o toma desde la banqueta: alguien echa agua a una losa ya dura. Pantalla: \"DÍA 3\"", "dice": "\"Esta losa ya está dura… y la siguen regando como planta.\""}, {"s": "3–8", "t": 4, "ve": "Pantalla: \"sin agua = más débil\"", "dice": "\"Y si no la riegan, puede no llegar a la fuerza para la que se diseñó.\""}, {"s": "8–20", "t": 4, "ve": "Demo en casa: dos vasitos de mortero, uno tapado con plástico húmedo y otro al sol [confirmar que la demo se vea]", "dice": "\"El concreto no se seca: reacciona con el agua. Si el agua se va antes de tiempo, la reacción se frena.\""}, {"s": "20–30", "t": 5, "ve": "Anim.: un cilindro de concreto tronando en una prensa. Pantalla: \"28 días\"", "dice": "\"El número mágico es 28. Cuando cuelan, sacan muestras en cilindros y las truenan en laboratorio, para ver si aguantó.\""}, {"s": "30–38", "t": 4, "ve": "Tarjeta: EN OBRA LE DECIMOS · CURADO. Trazo sobre un edificio terminado: \"día 28\" en cada losa", "dice": "\"Mojarlo para que siga ganando fuerza: en obra le decimos curado. Esto es lo que yo veo.\""}, {"s": "38–48", "t": 5, "ve": "Pantalla: \"28 ≠ final\"", "dice": "\"Y lo más raro: a los 28 no se acaba, eh. Si tiene agua, sigue agarrando fuerza.\""}, {"s": "48–55", "t": 3, "ve": "Una obra desde la banqueta (sin logos, sin gente reconocible)", "dice": "\"Así que la próxima vez que una obra parezca parada… a lo mejor está esperando al concreto.\" · Pantalla: \"¿Sabías lo del riego? 👇 · Ya no lo veo igual\""}], "notas": "Montaña: 5 · 4 · 4 · 5 · 4 · 5 · 3. Datos: 4 (reacción con agua, 28 días, cilindros, sigue ganando después).\nLo de Chuss: que diga si en su obra se riega así y cuántos días [que lo diga él]."}, {"n": 3, "fecha": "lun 9 nov", "pilar": "LIFE, LATELY", "est": 1, "dur": 50, "extra": "", "hook": "\"En la CDMX cada respiración trae como 23 % menos oxígeno. Y yo corro aquí.\"", "rows": [{"s": "0–3", "t": 5, "ve": "Su reloj con su ritmo [que lo diga él]; respiración fuerte. Pantalla: \"−23 % O₂\"", "dice": "\"En la CDMX cada respiración trae como 23 % menos oxígeno. Y yo corro aquí.\""}, {"s": "3–8", "t": 4, "ve": "Pantalla: su meta [que lo diga él]", "dice": "\"Ojo: no soy corredor pro. Soy ingeniero buscando bajar de ___.\" [que lo diga él]"}, {"s": "8–20", "t": 4, "ve": "Dos globos en sus manos: uno lleno y uno a tres cuartos", "dice": "\"La CDMX está a 2,240 metros. Hay menos presión: cada bocanada trae menos oxígeno.\""}, {"s": "20–30", "t": 5, "ve": "Anim. y texto \"México 68\" (sin imágenes del COI)", "dice": "\"En atletas entrenados, cada 1,000 metros de altura baja como 6 % el oxígeno que el cuerpo puede usar. Por algo en México 68 las carreras largas fueron lentas.\""}, {"s": "30–38", "t": 4, "ve": "Tarjeta: EN OBRA LE DECIMOS · CONDICIONES DE SITIO. Trazo: la línea de altura, CDMX 2,240 → Chicago 180", "dice": "\"En obra, antes de diseñar estudias el lugar: el suelo, el clima. Le decimos condiciones de sitio. Mi sitio está a 2,240 metros. Esto es lo que yo veo.\" [que lo diga él]"}, {"s": "38–48", "t": 5, "ve": "Su maleta abierta con los tenis", "dice": "\"El jueves me voy a Chicago: está a unos 180 metros. Ahí el aire trae más oxígeno. Cuánto le sirve a mi cuerpo… no sé. Lo voy a medir.\""}, {"s": "48–55", "t": 3, "ve": "Él amarrándose los tenis", "dice": "\"Si bajo mi tiempo, fue el aire. Si no, fue la pizza.\" · Pantalla: \"¿Desde qué altura corres tú? 👇 · Ya no lo veo igual\""}], "notas": "Montaña: 5 · 4 · 4 · 5 · 4 · 5 · 3. Datos: 4 (2,240 m; ~23 %; ~6 % cada 1,000 m; México 68). Ojo: el aire de Chicago trae ~30 % más oxígeno, pero el cuerpo no gana 30 %; por eso no se dice \"un tercio\". Diario, no consejo:\nno se promete que vaya a bajar el tiempo."}, {"n": 4, "fecha": "mié 11 nov", "pilar": "LUGARES", "est": 2, "dur": 45, "extra": "parte 1", "hook": "\"¿Te pararías en una caja de vidrio a 412 metros… donde el piso ya tronó dos veces?\"", "rows": [{"s": "0–3", "t": 5, "ve": "Anim.: una caja de vidrio colgada de un rascacielos. Pantalla: \"412 m\"", "dice": "Voz fuera de cuadro: \"¿Te pararías en una caja de vidrio a 412 metros… donde el piso ya tronó dos veces?\""}, {"s": "3–10", "t": 4, "ve": "Chuss en su casa, cara de \"no\" (reacción, 2 s)", "dice": "\"Me dan miedo las alturas. [que lo diga él] Y mañana me voy a Chicago a pararme ahí.\" · Pantalla: \"Willis Tower · piso 103\""}, {"s": "10–18", "t": 5, "ve": "Anim. con letrero \"recreación\": grieta en el piso", "dice": "\"29 de mayo de 2014: gente encima y el piso hace crack. 12 de junio de 2019: otra vez.\""}, {"s": "18–28", "t": 3, "ve": "Su celular con la mica estrellada", "dice": "\"Pero lo que se rompió fue la mica. Como esta: la pantalla está bien. Abajo hay tres capas de vidrio de media pulgada, y aguanta unas cuatro toneladas y media.\""}, {"s": "28–36", "t": 4, "ve": "Tarjeta: EN OBRA LE DECIMOS · VIDRIO LAMINADO. Trazo: las 3 capas y el marco", "dice": "\"Capas pegadas que, si una truena, las otras aguantan: en obra le decimos vidrio laminado.\""}, {"s": "36–42", "t": 5, "ve": "Un manojo de popotes en su mano, que se mece", "dice": "\"Y ojo: el edificio se mueve. En promedio unos 15 centímetros con el viento. Si no se moviera, ahí sí me daría miedo.\""}, {"s": "42–45", "t": 4, "ve": "Negro, corte a media frase", "dice": "\"¿Me voy a parar? El martes te…\" · Pantalla: \"Parte 2 · desde Chicago\""}], "notas": "Montaña: 5 · 4 · 5 · 3 · 4 · 5 · 4. Datos: 6 (412 m; 2014 y 2019; mica; 3 capas de ½\"; ~4.5 t; ~15 cm). Casi todo es\nanimación, objetos y voz: ~15 min de Chuss."}, {"n": 5, "fecha": "vie 13 nov", "pilar": "LUGARES (Chicago)", "est": 1, "dur": 55, "extra": "", "hook": "\"Parece que alguien rayó este edificio con X gigantes. No es un error.\"", "rows": [{"s": "0–3", "t": 5, "ve": "Desde la banqueta, la cámara sube por la torre. Pantalla: \"100 pisos · 344 m\"", "dice": "\"Parece que alguien rayó este edificio con X gigantes. No es un error.\""}, {"s": "3–8", "t": 4, "ve": "Pantalla: \"875 N. Michigan · antes John Hancock Center · mi primera vez en Chicago\"", "dice": "\"Gracias a esas X, sus 100 pisos llevan más o menos el acero por metro cuadrado de un edificio de 50.\" [SOM; confirmar la cifra exacta]"}, {"s": "8–20", "t": 4, "ve": "Su mano: la hoja plana se dobla; enrollada, se para sola", "dice": "\"Cada X abarca unos 20 pisos y amarra las cuatro caras: todo el edificio trabaja como un tubo. El viento empuja y las X lo bajan al suelo.\""}, {"s": "20–30", "t": 5, "ve": "Anim. \"recreación\": una pila de concreto con un hueco adentro", "dice": "\"Y casi no lo terminan. En 1965 le encontraron huecos a los cimientos, las pilas que bajan hasta la roca. Las revisaron una por una y la obra se retrasó medio año.\""}, {"s": "30–38", "t": 4, "ve": "Tarjeta: EN OBRA LE DECIMOS · CONTRAVENTEO. Trazo: X → cuatro caras → tubo", "dice": "\"A las X que amarran una estructura contra el viento, en obra les decimos contraventeo. Esto es lo que yo veo.\""}, {"s": "38–48", "t": 5, "ve": "Foto interior de un departamento con la X en la pared de las ventanas [confirmar foto con licencia]", "dice": "\"Y lo más raro: en algunos departamentos, la X de acero queda en la pared de las ventanas. Adentro de tu casa. Imagínate explicarle eso a tus visitas.\""}, {"s": "48–55", "t": 3, "ve": "Chuss de espaldas, mirando hacia arriba", "dice": "\"Mañana me paro en la caja de vidrio.\" · Pantalla: \"¿Cuál es el edificio más raro de tu ciudad? 👇 · Ya no lo veo igual\""}], "notas": "Montaña: 5 · 4 · 4 · 5 · 4 · 5 · 3. Datos: 5. Grabación en Chicago: ~15 min desde la calle. (Se quitó lo del Hancock de Boston: era señalar el error de otro edificio.)"}, {"n": 6, "fecha": "dom 15 nov", "pilar": "LIFE, LATELY (Chicago)", "est": 2, "dur": 45, "extra": "", "hook": "\"Vengo de correr a 2,240 metros. Hoy corro a 180. ¿Bajo mi tiempo?\"", "rows": [{"s": "0–3", "t": 5, "ve": "Pantalla: \"2,240 m → 180 m\" · \"[hora] · Chicago · [temperatura]\" [que lo diga él]. Se amarra los tenis en el hotel", "dice": "\"Vengo de correr a 2,240 metros. Hoy corro a 180. ¿Bajo mi tiempo?\""}, {"s": "3–10", "t": 4, "ve": "Su cara en una esquina, nervioso", "dice": "\"Toda la semana dije que iba a bajar mi tiempo. Si no lo bajo, los comentarios me van a acabar.\" [que lo diga él]"}, {"s": "10–25", "t": 5, "ve": "Corre junto al lago [confirmar ruta]; pantalla: km 1 · km 3 · km 5 con su ritmo [que lo diga él]", "dice": "Lo que va sintiendo, en sus palabras [que lo diga él]. Ej.: km 1 \"siento que vuelo\"; km 3 \"el viento de aquí no es broma\"."}, {"s": "25–33", "t": 5, "ve": "Pantalla dividida: su reloj de la CDMX arriba y el de Chicago abajo", "dice": "\"En la CDMX corro a ___. Aquí corrí a ___.\" [que lo diga él]"}, {"s": "33–40", "t": 4, "ve": "Tarjeta: EN OBRA LE DECIMOS · PRUEBA DE CARGA [confirmar]. Trazo: la línea de altura", "dice": "\"En obra, cuando quieres saber si algo aguanta, le haces una prueba de carga. Esta fue la mía.\" [que lo diga él]"}, {"s": "40–45", "t": 3, "ve": "Una rebanada de pizza", "dice": "\"Y ahora sí: pizza.\" · Pantalla: \"¿Fue el aire o las ganas? 👇 · Ya no lo veo igual\""}], "notas": "Montaña: 5 · 4 · 5 · 5 · 4 · 3. Sin caras de otros corredores. Si el tiempo no baja, el video funciona igual (el gancho es \"¿lo logra?\"): se cuenta tal cual."}, {"n": 7, "fecha": "mar 17 nov", "pilar": "LUGARES (Chicago)", "est": 2, "dur": 40, "extra": "parte 2", "hook": "\"¿Y? ¿Te paraste o no?\"", "rows": [{"s": "0–3", "t": 5, "ve": "Mirando hacia abajo a través del vidrio. Pantalla: \"412 m\"", "dice": "Voz fuera de cuadro: \"¿Y? ¿Te paraste o no?\" [que lo diga él quién lo acompaña]"}, {"s": "3–10", "t": 5, "ve": "Su reacción real", "dice": "[que lo diga él]"}, {"s": "10–20", "t": 4, "ve": "Trazo encima de la toma real: las 3 capas", "dice": "\"Yo sabía que eran tres capas de vidrio laminado y que lo que se cuarteó fue la mica. Mi cerebro no.\""}, {"s": "20–28", "t": 5, "ve": "La ciudad desde arriba", "dice": "Lo que no sabía hasta estar ahí: ¿se sentía el movimiento? [que lo diga él]"}, {"s": "28–35", "t": 4, "ve": "Tarjeta: EN OBRA LE DECIMOS · CARGA VIVA. Gente parada en el vidrio (de espaldas, sin caras)", "dice": "\"Y a la gente que se para encima, en obra le decimos carga viva. Hoy fui carga viva a 412 metros.\""}, {"s": "35–40", "t": 3, "ve": "Sale de la caja", "dice": "\"¿Tú te pararías? 👇\" · Pantalla: \"Ya no veo un piso de vidrio igual\""}], "notas": "Montaña: 5 · 5 · 4 · 5 · 4 · 3. Sin caras de otros visitantes; sin tripié si el lugar no lo permite [confirmar].\n(Nota: \"prueba de carga\" del 6 y \"carga viva\" del 7 se parecen; si Chuss prefiere, el 7 usa otra palabra. Nada de \"vale la pena\" ni precio del boleto: no es reseña. La voz de quien acompaña necesita su permiso.)"}, {"n": 8, "fecha": "jue 19 nov", "pilar": "OBRA", "est": 2, "dur": 45, "extra": "", "hook": "\"Mi primer día en obra fui el que más estorbaba.\" [que lo diga él]", "rows": [{"s": "0–3", "t": 5, "ve": "Casco nuevo con etiqueta. Pantalla: \"DÍA 1\"", "dice": "\"Mi primer día en obra fui el que más estorbaba.\""}, {"s": "3–10", "t": 4, "ve": "Pantalla: \"Lo que creía: soy el ingeniero\" → \"Lo que era: el que más estorbaba\"", "dice": "\"Llegué con casco nuevo, título nuevo… y le di una orden al maestro de obra.\" [que lo diga él]"}, {"s": "10–22", "t": 4, "ve": "Pantalla: dos contadores, \"maestro: [__] años en obra\" · \"yo: [__] horas\" [que lo diga él]", "dice": "Qué pasó [que lo diga él]."}, {"s": "22–32", "t": 5, "ve": "Anim.: una tablet con notas que se abren", "dice": "\"Lo que no sabía: en una obra, las órdenes no van de palabra. Van en la bitácora, el diario oficial de la obra. En obra pública federal es obligatoria por ley, y ya es electrónica.\""}, {"s": "32–38", "t": 4, "ve": "Tarjeta: EN OBRA LE DECIMOS · BITÁCORA. Trazo sobre un edificio terminado: notas pegadas a cada piso", "dice": "\"En obra decimos: lo que no está en la bitácora, no pasó.\" [que lo diga él]"}, {"s": "38–45", "t": 3, "ve": "El casco con etiqueta", "dice": "\"Mi orden del primer día no estaba en la bitácora. O sea: nunca pasó.\" · Pantalla: \"¿Cuál fue tu primer error en el trabajo? 👇 · Ya no lo veo igual\""}], "notas": "Montaña: 5 · 4 · 4 · 5 · 4 · 3. Autoironía (como Kris Hui y Phily): nadie queda mal más que él."}, {"n": 9, "fecha": "sáb 21 nov", "pilar": "LUGARES (Chicago)", "est": 1, "dur": 55, "extra": "", "hook": "\"A este rascacielos le quitaron un piso entero. A propósito.\"", "rows": [{"s": "0–3", "t": 5, "ve": "La cámara sube por la torre hasta el hueco. Pantalla: \"101 pisos · 1 vacío\"", "dice": "\"A este rascacielos le quitaron un piso entero. A propósito.\""}, {"s": "3–8", "t": 4, "ve": "Pantalla: \"363 E. Wacker · Jeanne Gang\"", "dice": "\"Y fue a media obra: en 2017 convirtieron un piso de departamentos en un hueco. Para el viento.\""}, {"s": "8–20", "t": 4, "ve": "Anim. 2D: el viento forma remolinos atrás de la torre; con el hueco se desordenan [confirmar explicación]", "dice": "\"Cuando el viento choca con un edificio, se forman remolinos que lo empujan de lado a lado, como columpio. El hueco los desordena para que no empujen al mismo ritmo.\""}, {"s": "20–30", "t": 5, "ve": "Pantalla: \"8.5 m de hueco · −24 % de movimiento\"", "dice": "\"El hueco mide como 8.5 metros de alto. Con eso, el edificio se mueve 24 % menos de lado a lado.\""}, {"s": "30–38", "t": 4, "ve": "Tarjeta: EN OBRA LE DECIMOS · AMORTIGUADOR. Trazo: el hueco y 6 tanques arriba", "dice": "\"Y por si fuera poco, arriba trae seis tinacos gigantes. A esto en obra le decimos amortiguador. Esto es lo que yo veo.\""}, {"s": "38–48", "t": 5, "ve": "Su mano mece un vaso con agua", "dice": "\"Unos 340,000 litros de agua que se mecen a destiempo del edificio. Según el ingeniero, le bajan hasta 70 % las sacudidas.\" [MKA; confirmar]"}, {"s": "48–55", "t": 3, "ve": "La torre completa", "dice": "\"Al terminarse, era el edificio más alto del mundo diseñado por una mujer.\" · Pantalla: \"¿Vivirías debajo de 340,000 litros de agua? 👇 · Ya no lo veo igual\""}], "notas": "Montaña: 5 · 4 · 4 · 5 · 4 · 5 · 3. Datos: 6 (MKA y Wikipedia). El número del piso no se dice (83 u 88 según la\nfuente). Se nombra como 363 E. Wacker, sin logos del hotel."}, {"n": 10, "fecha": "lun 23 nov", "pilar": "LUGARES (Chicago + CDMX)", "est": 1, "dur": 55, "extra": "", "hook": "\"En 1861, Chicago subió un hotel 1.80 metros… con huéspedes adentro.\"", "rows": [{"s": "0–3", "t": 5, "ve": "Pantalla completa: anim. \"recreación\" de un hotel de ladrillo que sube con gatos. \"↑ 1.80 m\"", "dice": "\"En 1861, Chicago subió un hotel de 6 pisos 1.80 metros… con huéspedes adentro.\""}, {"s": "3–8", "t": 5, "ve": "Corte a Bellas Artes completa. \"↓ 1.80 m\" (aquí sí, pantalla dividida con las dos)", "dice": "\"Y en la CDMX, Bellas Artes bajó 1.80 metros antes de abrir.\""}, {"s": "8–20", "t": 4, "ve": "Anim. \"recreación\": calles con agua estancada", "dice": "\"¿Por qué subir una ciudad? Chicago no tenía drenaje, y el agua estancada traía epidemias. En 1854 el cólera mató a cerca del 6 % de la gente. La solución: subir calles y edificios.\""}, {"s": "20–30", "t": 5, "ve": "Un gato de coche levanta una caja con libros (objeto); contadores en pantalla", "dice": "\"¿Con qué? Con gatos de tornillo. El hotel: unos 500 hombres y 1,000 gatos. Un año antes, una cuadra entera: 1.42 metros en 5 días, con 600 hombres, 6,000 gatos… y los negocios abiertos.\""}, {"s": "30–38", "t": 4, "ve": "Tarjeta: EN OBRA LE DECIMOS · [término para levantar un edificio con gatos, que lo diga él]. Trazo sobre Bellas Artes: el nivel de calle de 1934 contra hoy", "dice": "\"Esto es lo que yo veo.\""}, {"s": "38–48", "t": 5, "ve": "Anim.: una escalera de entrada que se empina día con día", "dice": "\"Y un huésped solo notó una cosa: cada día, la escalera de la entrada estaba más empinada.\""}, {"s": "48–55", "t": 3, "ve": "Chuss de espaldas en la CDMX", "dice": "\"Chicago resolvió subiendo. La CDMX todavía no termina de bajar.\" · Pantalla: \"¿Tú qué harías con la CDMX? 👇 · Ya no lo veo igual\""}], "notas": "Montaña: 5 · 5 · 4 · 5 · 4 · 5 · 3. Datos: 7. Cierra la serie y amarra con el video 1."}];
+(function(){
+  var NS='http://www.w3.org/2000/svg';
+  function esc(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+  function mk(t){t=esc(t);
+    t=t.replace(/\[(que lo diga él[^\]]*)\]/g,'<mark class="him">$1</mark>');
+    t=t.replace(/\[([^\]]*confirmar[^\]]*)\]/g,'<mark class="chk">$1</mark>');
+    t=t.replace(/^Anim\.\s*/,'<span class="anim">ANIM</span>');
+    return t}
+  function pil(p){return /^LUGARES/.test(p)?'L':/^OBRA/.test(p)?'O':'V'}
+  var COL={L:'var(--p1)',O:'var(--p2)',V:'var(--p3)'}, NAME={L:'Lugares',O:'Obra',V:'Life, Lately'};
+  var EST={1:'Parece error, pero no',2:'Primera vez / pregunta incómoda'};
+  function range(s){var m=String(s).match(/(\d+)\D+(\d+)/);return m?[+m[1],+m[2]]:[0,0]}
+  function word(g){for(var i=0;i<g.rows.length;i++){var m=g.rows[i].ve.match(/LE DECIMOS · ([^.]+?)(?:\.|\s\[|$)/);if(m)return m[1].trim()}return ''}
+  function datos(g){var m=g.notas.match(/Datos: (\d+)/);return m?m[1]:''}
+
+  /* hero */
+  var hl=document.getElementById('heroLines');
+  function ln(g,x1,y1,x2,y2,d){var l=document.createElementNS(NS,'line');l.setAttribute('x1',x1);l.setAttribute('y1',y1);l.setAttribute('x2',x2);l.setAttribute('y2',y2);l.setAttribute('class','ln');l.style.setProperty('--len',Math.hypot(x2-x1,y2-y1));l.style.animationDelay=d+'s';g.appendChild(l)}
+  for(var i=0;i<5;i++){var y=10+i*80;ln(hl,40,y,160,y+80,.2+i*.18);ln(hl,160,y,40,y+80,.3+i*.18)}
+  var ti=0,tl=document.getElementById('tickLab'),th=document.getElementById('tickH');
+  function tick(){var g=DATA[ti];th.classList.add('out');setTimeout(function(){tl.textContent='Video '+g.n+' · '+g.fecha+' · '+NAME[pil(g.pilar)];th.innerHTML=mk(g.hook.replace(/\s*\[que lo diga él\]$/,''));th.classList.remove('out')},ti===0&&!th.textContent?0:420);ti=(ti+1)%DATA.length}
+  tick();if(!matchMedia('(prefers-reduced-motion: reduce)').matches)setInterval(tick,3800);
+
+  /* estructuras */
+  var ES={1:{dur:55,steps:[[0,3,5,'Error aparente + número'],[3,8,4,'Lo que está en juego'],[8,20,4,'Demostración'],[20,30,5,'Giro con dato'],[30,38,4,'En obra le decimos + trazo',1],[38,48,5,'El giro más raro'],[48,55,3,'Pregunta + firma']],vids:'videos 1, 2 y 3'},
+          2:{dur:45,steps:[[0,3,5,'Pregunta incómoda / primera vez'],[3,10,4,'Confesión'],[10,25,5,'La escena con números'],[25,33,4,'Lo que cuesta'],[33,40,4,'En obra le decimos + trazo',1],[40,45,3,'Final abierto']],vids:'videos 4, 6 y 8'}};
+  var eb=document.getElementById('estBars');
+  [1,2].forEach(function(k){var e=ES[k],h='<div class="row"><div class="hd"><h3>Estructura '+k+' · '+EST[k]+'</h3><span>~'+e.dur+' s · '+e.vids+'</span></div><div class="bar">';
+    e.steps.forEach(function(s){h+='<div class="'+(s[4]?'k':'')+'" style="flex:'+(s[1]-s[0])+';--h:'+(s[2]*20-8)+'%"><span>'+s[3]+'</span></div>'});
+    h+='</div><ol class="legend-steps">';e.steps.forEach(function(s){h+='<li><b>'+s[0]+'–'+s[1]+' s</b>'+s[3]+'</li>'});h+='</ol></div>';eb.insertAdjacentHTML('beforeend',h)});
+
+  /* calendario */
+  var ct=document.getElementById('calTrack'),days=['jue','vie','sáb','dom','lun','mar','mié'];
+  for(var d=5;d<=23;d++){var dw=days[(d-5)%7],chi=d>=12&&d<=16,cell='<div class="cal-day'+(chi?' chi':'')+'">'+(d===12?'<span class="cal-chi">Chicago</span>':'')+'<span class="d">'+dw+' '+d+'</span>';
+    DATA.forEach(function(g){if(+g.fecha.match(/\d+/)[0]===d){var p=pil(g.pilar);cell+='<a class="cal-v" style="--c:'+COL[p]+'" href="#v'+g.n+'" data-open="'+g.n+'"><b>'+String(g.n).padStart(2,'0')+'</b>'+NAME[p]+'</a>'}});
+    ct.insertAdjacentHTML('beforeend',cell+'</div>')}
+
+  /* videos */
+  var box=document.getElementById('vids');
+  function spark(g,w,h){var pts=g.rows.map(function(r){var a=range(r.s);return [(a[0]+a[1])/2,r.t]}),max=range(g.rows[g.rows.length-1].s)[1]||60;
+    var P=pts.map(function(p){return [(p[0]/max)*(w-8)+4,h-4-((p[1]-1)/4)*(h-14)]});
+    var d='M'+P.map(function(p){return p[0].toFixed(1)+' '+p[1].toFixed(1)}).join(' L');
+    var area=d+' L'+P[P.length-1][0].toFixed(1)+' '+h+' L'+P[0][0].toFixed(1)+' '+h+' Z';
+    var dots=P.map(function(p,i){return '<circle cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" r="'+(pts[i][1]===5?3.4:2.4)+'" fill="'+(pts[i][1]===5?'var(--c)':'var(--bg)')+'" stroke="var(--c)" stroke-width="1.5"/>'}).join('');
+    return '<svg viewBox="0 0 '+w+' '+h+'" preserveAspectRatio="none" role="img" aria-label="Montaña rusa de tensión: '+pts.map(function(p){return p[1]}).join(', ')+'"><path d="'+area+'" fill="var(--c)" opacity=".1"/><path d="'+d+'" fill="none" stroke="var(--c)" stroke-width="2" vector-effect="non-scaling-stroke"/>'+dots+'</svg>'}
+  DATA.forEach(function(g){var p=pil(g.pilar),w=word(g),dt=datos(g),loc=(g.pilar.match(/\(([^)]+)\)/)||[])[1];
+    var h='<article class="vid" id="v'+g.n+'" data-p="'+p+'" style="--c:'+COL[p]+'">'+
+      '<div class="top-row"><span class="no">'+String(g.n).padStart(2,'0')+'</span><span class="date">'+g.fecha+'</span><span class="chip pc">'+NAME[p]+(loc?' · '+loc:'')+'</span><span class="chip">Estructura '+g.est+'</span><span class="chip">~'+g.dur+' s</span>'+(g.extra?'<span class="chip">'+esc(g.extra)+'</span>':'')+'</div>'+
+      '<p class="hook">'+mk(g.hook)+'</p><div class="spark">'+spark(g,400,58)+'</div>'+
+      '<div class="meta">'+(w?'<span>En obra le decimos: <b>'+mk(w)+'</b></span>':'')+(dt?'<span><b>'+dt+'</b> datos</span>':'')+'<span>'+EST[g.est]+'</span></div>'+
+      '<button class="open-btn" aria-expanded="false" aria-controls="s'+g.n+'">Ver guion</button>'+
+      '<div class="script" id="s'+g.n+'">';
+    g.rows.forEach(function(r){var bars='';for(var i=1;i<=5;i++)bars+='<i class="'+(i<=r.t?'on':'')+'" style="height:'+(i*4)+'px"></i>';
+      h+='<div class="beat"><span class="s">'+esc(r.s)+' s</span><span class="tn" aria-label="tensión '+r.t+' de 5">'+bars+'</span><div class="ve"><span class="lbl">Se ve</span>'+mk(r.ve)+'</div><div class="di"><span class="lbl">Dices</span>'+mk(r.dice)+'</div></div>'});
+    h+=(g.notas?'<p class="notes">'+mk(g.notas).replace(/\n/g,'<br>')+'</p>':'')+'</div></article>';box.insertAdjacentHTML('beforeend',h)});
+  function setOpen(a,o){a.classList.toggle('open',o);var b=a.querySelector('.open-btn');b.setAttribute('aria-expanded',o);b.textContent=o?'Cerrar guion':'Ver guion'}
+  box.addEventListener('click',function(e){var b=e.target.closest('.open-btn');if(!b)return;var a=b.closest('.vid');setOpen(a,!a.classList.contains('open'))});
+  document.getElementById('calTrack').addEventListener('click',function(e){var a=e.target.closest('[data-open]');if(!a)return;var v=document.getElementById('v'+a.dataset.open);v.hidden=false;setOpen(v,true)});
+  var fb=[].slice.call(document.querySelectorAll('.fbtn'));
+  fb.forEach(function(b){b.addEventListener('click',function(){fb.forEach(function(x){x.setAttribute('aria-pressed',x===b)});var f=b.dataset.f;[].forEach.call(box.children,function(v){v.hidden=!(f==='all'||v.dataset.p===f)})})});
+
+  /* preguntas */
+  var form=document.getElementById('qs'),msg=document.getElementById('msg'),ok=document.getElementById('ok');
+  function val(n){var e=form.querySelector('[name="'+n+'"]:checked');return e?e.value:''}
+  function txt(n){var e=form.querySelector('[name="'+n+'"]');return e?e.value.trim():''}
+  function j(a){return a.filter(Boolean).join(' · ')||'—'}
+  function build(){msg.textContent=['Paul, mis respuestas al plan v3:','1. Correr: '+j([txt('q1')]),'2. Alturas: '+j([val('q2')]),'3. Primer día: '+j([val('q3'),txt('q3b')]),'4. Riego del concreto: '+j([val('q4'),txt('q4b')]),'5. Mis palabras de obra: '+j([txt('q5')]),'6. Reglas de mi empresa: '+j([val('q6')]),'7. Videos por semana: '+j([val('q7')])].join('\n');ok.textContent=''}
+  form.addEventListener('input',build);form.addEventListener('change',build);
+  document.getElementById('copy').addEventListener('click',function(){build();var t=msg.textContent;function done(){ok.textContent='Copiado. Pégalo en WhatsApp.'}
+    function fallback(){var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');done()}catch(e){ok.textContent='Selecciona el texto y cópialo.'}a.remove()}
+    if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(done,fallback);else fallback()});
+
+  /* barra */
+  var pr=document.getElementById('progress'),top=document.getElementById('top'),links=[].slice.call(document.querySelectorAll('.nav a'));
+  function onScroll(){var h=document.documentElement,p=h.scrollTop/((h.scrollHeight-h.clientHeight)||1);pr.style.transform='scaleX('+p+')';top.classList.toggle('scrolled',h.scrollTop>10);
+    var cur='';links.forEach(function(a){var s=document.querySelector(a.getAttribute('href'));if(s&&s.getBoundingClientRect().top<120)cur=a.getAttribute('href')});links.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')===cur)})}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+})();
+</script>
+</body>
+</html>
